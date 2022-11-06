@@ -1,6 +1,6 @@
 {
-  "name":"athlete",
-  "version":"1.0.0",
+  "name": "athlete",
+  "version": "1.0.0",
   "author": "Daniel Burlacu",
   "license": "MIT",
   "directories": {
@@ -9,6 +9,8 @@
   "dependencies": {
     "@chainlink/contracts": "^0.5.1",
     "@openzeppelin/contracts": "^4.7.3",
+    "@truffle/hdwallet-provider": "^2.1.1",
+    "truffle-assertions": "^0.9.2",
     "truffle-plugin-solhint": "^0.0.6"
   },
   "scripts": {
