@@ -1,0 +1,97 @@
+Compiling your contracts...
+===========================
+> Compiling ./contracts/Athlete.sol
+> Compiling @openzeppelin/contracts/access/Ownable.sol
+> Compiling @openzeppelin/contracts/security/Pausable.sol
+> Compiling @openzeppelin/contracts/security/ReentrancyGuard.sol
+> Compiling @openzeppelin/contracts/token/ERC721/ERC721.sol
+> Compiling @openzeppelin/contracts/token/ERC721/IERC721.sol
+> Compiling @openzeppelin/contracts/token/ERC721/IERC721Receiver.sol
+> Compiling @openzeppelin/contracts/token/ERC721/extensions/IERC721Metadata.sol
+> Compiling @openzeppelin/contracts/utils/Address.sol
+> Compiling @openzeppelin/contracts/utils/Context.sol
+> Compiling @openzeppelin/contracts/utils/Counters.sol
+> Compiling @openzeppelin/contracts/utils/Strings.sol
+> Compiling @openzeppelin/contracts/utils/introspection/ERC165.sol
+> Compiling @openzeppelin/contracts/utils/introspection/IERC165.sol
+> Artifacts written to /home/danisev/Polygon/test_project/project_athletes/client_interface/src/artifacts
+> Compiled successfully using:
+   - solc: 0.8.1+commit.df193b15.Emscripten.clang
+
+
+ERC721._checkOnERC721Received(address,address,uint256,bytes) (@openzeppelin/contracts/token/ERC721/ERC721.sol#394-416) ignores return value by IERC721Receiver(to).onERC721Received(_msgSender(),from,tokenId,data) (@openzeppelin/contracts/token/ERC721/ERC721.sol#401-412)
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#unused-return
+
+InsideMe.constructor(string,string,string)._name (Athlete.sol#73) shadows:
+        - ERC721._name (@openzeppelin/contracts/token/ERC721/ERC721.sol#24) (state variable)
+InsideMe.constructor(string,string,string)._symbol (Athlete.sol#74) shadows:
+        - ERC721._symbol (@openzeppelin/contracts/token/ERC721/ERC721.sol#27) (state variable)
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#local-variable-shadowing
+
+ERC721._checkOnERC721Received(address,address,uint256,bytes) (@openzeppelin/contracts/token/ERC721/ERC721.sol#394-416) has external calls inside a loop: IERC721Receiver(to).onERC721Received(_msgSender(),from,tokenId,data) (@openzeppelin/contracts/token/ERC721/ERC721.sol#401-412)
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation/#calls-inside-a-loop
+
+Variable 'ERC721._checkOnERC721Received(address,address,uint256,bytes).retval (@openzeppelin/contracts/token/ERC721/ERC721.sol#401)' in ERC721._checkOnERC721Received(address,address,uint256,bytes) (@openzeppelin/contracts/token/ERC721/ERC721.sol#394-416) potentially used before declaration: retval == IERC721Receiver.onERC721Received.selector (@openzeppelin/contracts/token/ERC721/ERC721.sol#402)
+Variable 'ERC721._checkOnERC721Received(address,address,uint256,bytes).reason (@openzeppelin/contracts/token/ERC721/ERC721.sol#403)' in ERC721._checkOnERC721Received(address,address,uint256,bytes) (@openzeppelin/contracts/token/ERC721/ERC721.sol#394-416) potentially used before declaration: reason.length == 0 (@openzeppelin/contracts/token/ERC721/ERC721.sol#404)
+Variable 'ERC721._checkOnERC721Received(address,address,uint256,bytes).reason (@openzeppelin/contracts/token/ERC721/ERC721.sol#403)' in ERC721._checkOnERC721Received(address,address,uint256,bytes) (@openzeppelin/contracts/token/ERC721/ERC721.sol#394-416) potentially used before declaration: revert(uint256,uint256)(32 + reason,mload(uint256)(reason)) (@openzeppelin/contracts/token/ERC721/ERC721.sol#409)
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#pre-declaration-usage-of-local-variables
+
+Address.verifyCallResult(bool,bytes,string) (@openzeppelin/contracts/utils/Address.sol#201-221) uses assembly
+        - INLINE ASM (@openzeppelin/contracts/utils/Address.sol#213-216)
+ERC721._checkOnERC721Received(address,address,uint256,bytes) (@openzeppelin/contracts/token/ERC721/ERC721.sol#394-416) uses assembly
+        - INLINE ASM (@openzeppelin/contracts/token/ERC721/ERC721.sol#408-410)
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#assembly-usage
+
+InsideMe.mint(uint256) (Athlete.sol#106-127) compares to a boolean constant:
+        -! isInWhiteList(msg.sender) == true (Athlete.sol#111)
+InsideMe.mint(uint256) (Athlete.sol#106-127) compares to a boolean constant:
+        -onlyWhitelisted == true (Athlete.sol#109)
+InsideMe.mint(uint256) (Athlete.sol#106-127) compares to a boolean constant:
+        -require(bool,string)(isInWhiteList(msg.sender) == true,You are not in the whitelist !!) (Athlete.sol#110)
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#boolean-equality
+
+Different versions of Solidity are used:
+        - Version used: ['^0.8.0', '^0.8.1']
+        - ^0.8.1 (Athlete.sol#3)
+        - ^0.8.0 (@openzeppelin/contracts/utils/Counters.sol#4)
+        - ^0.8.0 (@openzeppelin/contracts/security/ReentrancyGuard.sol#4)
+        - ^0.8.1 (@openzeppelin/contracts/utils/Address.sol#4)
+        - ^0.8.0 (@openzeppelin/contracts/token/ERC721/IERC721Receiver.sol#4)
+        - ^0.8.0 (@openzeppelin/contracts/access/Ownable.sol#4)
+        - ^0.8.0 (@openzeppelin/contracts/utils/Strings.sol#4)
+        - ^0.8.0 (@openzeppelin/contracts/utils/introspection/ERC165.sol#4)
+        - ^0.8.0 (@openzeppelin/contracts/security/Pausable.sol#4)
+        - ^0.8.0 (@openzeppelin/contracts/token/ERC721/IERC721.sol#4)
+        - ^0.8.0 (@openzeppelin/contracts/token/ERC721/extensions/IERC721Metadata.sol#4)
+        - ^0.8.0 (@openzeppelin/contracts/token/ERC721/ERC721.sol#4)
+        - ^0.8.0 (@openzeppelin/contracts/utils/Context.sol#4)
+        - ^0.8.0 (@openzeppelin/contracts/utils/introspection/IERC165.sol#4)
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#different-pragma-directives-are-used
+
+InsideMe._mintSingleNFT() (Athlete.sol#159-162) is never used and should be removed
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#dead-code
+
+Pragma version^0.8.1 (Athlete.sol#3) allows old versions
+Pragma version^0.8.0 (@openzeppelin/contracts/utils/Counters.sol#4) allows old versions
+Pragma version^0.8.0 (@openzeppelin/contracts/security/ReentrancyGuard.sol#4) allows old versions
+Pragma version^0.8.1 (@openzeppelin/contracts/utils/Address.sol#4) allows old versions
+Pragma version^0.8.0 (@openzeppelin/contracts/token/ERC721/IERC721Receiver.sol#4) allows old versions
+Pragma version^0.8.0 (@openzeppelin/contracts/access/Ownable.sol#4) allows old versions
+Pragma version^0.8.0 (@openzeppelin/contracts/utils/Strings.sol#4) allows old versions
+Pragma version^0.8.0 (@openzeppelin/contracts/utils/introspection/ERC165.sol#4) allows old versions
+Pragma version^0.8.0 (@openzeppelin/contracts/security/Pausable.sol#4) allows old versions
+Pragma version^0.8.0 (@openzeppelin/contracts/token/ERC721/IERC721.sol#4) allows old versions
+Pragma version^0.8.0 (@openzeppelin/contracts/token/ERC721/extensions/IERC721Metadata.sol#4) allows old versions
+Pragma version^0.8.0 (@openzeppelin/contracts/token/ERC721/ERC721.sol#4) allows old versions
+Pragma version^0.8.0 (@openzeppelin/contracts/utils/Context.sol#4) allows old versions
+Pragma version^0.8.0 (@openzeppelin/contracts/utils/introspection/IERC165.sol#4) allows old versions
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#incorrect-versions-of-solidity
+
+InsideMe.slitherConstructorVariables() (Athlete.sol#12-303) uses literals with too many digits:
+        - cost = 1000000000000000000 (Athlete.sol#36)
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#too-many-digits
+
+InsideMe.hiddenMetadataUri (Athlete.sol#26) should be constant
+InsideMe.maxSupply (Athlete.sol#38) should be constant
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#state-variables-that-could-be-declared-constant
+. analyzed (14 contracts with 78 detectors), 31 result(s) found
