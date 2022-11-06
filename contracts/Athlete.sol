@@ -9,7 +9,7 @@ import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 import "@openzeppelin/contracts/security/ReentrancyGuard.sol";
 import "@openzeppelin/contracts/security/Pausable.sol";
 
-contract InsideMe is ERC721, Ownable, ReentrancyGuard,Pausable  {
+contract Athlete is ERC721, Ownable, ReentrancyGuard,Pausable  {
 
 //used to increment how many NFT's have been minted
   using Counters for Counters.Counter;
